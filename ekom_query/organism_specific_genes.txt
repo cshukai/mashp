@@ -1,0 +1,24 @@
+# find human-specific gene
+
+prefix ekom-owl: <http://ekom.nlm.nih.gov/ekom.owl#>
+prefix ekom: <http://ekom.nlm.nih.gov#>
+prefix bp:<http://www.biopax.org/release/biopax-level2.owl#> 
+
+select ?humangene    where {
+ 
+  ?humangene ekom:has_origin ekom-owl:Homo_sapiens .
+  
+
+} 
+
+#find non-human-specific gene
+prefix ekom-owl: <http://ekom.nlm.nih.gov/ekom.owl#>
+prefix ekom: <http://ekom.nlm.nih.gov#>
+prefix bp:<http://www.biopax.org/release/biopax-level2.owl#> 
+select ?gene    where {
+  ?gene  ekom:has_origin ?origin . 
+  minus  {?gene ekom:has_origin ekom-owl:Homo_sapiens} 
+
+} 
+
+
