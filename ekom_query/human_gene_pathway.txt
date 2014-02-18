@@ -1,8 +1,28 @@
+# find gene-pathway relationships
+
 prefix ekom-owl: <http://ekom.nlm.nih.gov/ekom.owl#>
 prefix ekom: <http://ekom.nlm.nih.gov#>
 prefix bp:<http://www.biopax.org/release/biopax-level2.owl#> 
 
 select ?gene ?allPathway $sym where {
+    $sym  rdf:type ekom-owl:gene_symbol .
+    ?allPathway  rdf:type  bp:pathway . 
+    ?gene rdf:type ekom-owl:gene ;
+          ekom:has_origin ekom-owl:Homo_sapiens ; 
+          ekom:functionally_related_to ?allPathway ;
+          ekom:associated_with $sym  .
+ 
+
+
+}
+
+
+# count gene-pathway relationships
+prefix ekom-owl: <http://ekom.nlm.nih.gov/ekom.owl#>
+prefix ekom: <http://ekom.nlm.nih.gov#>
+prefix bp:<http://www.biopax.org/release/biopax-level2.owl#> 
+
+select  ?allPathway ?gene ?sym (count(?sym) as ?freq) where {
     $sym  rdf:type ekom-owl:gene_symbol .
     ?allPathway  rdf:type  bp:pathway . 
     ?gene rdf:type ekom-owl:gene ;
