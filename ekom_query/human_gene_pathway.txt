@@ -5,7 +5,7 @@ prefix ekom: <http://ekom.nlm.nih.gov#>
 prefix bp:<http://www.biopax.org/release/biopax-level2.owl#> 
 
 select ?gene ?allPathway $sym where {
-    $sym  rdf:type ekom-owl:gene_symbol .
+    ?sym  rdf:type ekom-owl:gene_symbol .
     ?allPathway  rdf:type  bp:pathway . 
     ?gene rdf:type ekom-owl:gene ;
           ekom:has_origin ekom-owl:Homo_sapiens ; 
