@@ -1,0 +1,22 @@
+prefix ekom-owl: <http://ekom.nlm.nih.gov/ekom.owl#>
+prefix ekom: <http://ekom.nlm.nih.gov#>
+prefix bp:<http://www.biopax.org/release/biopax-level2.owl#> 
+
+select ?interaction ?genesym ?partnersym  where {
+    ?interaction rdf:type ekom-owl:interaction .
+    ?genesym  rdf:type ekom-owl:gene_symbol .
+    ?partnersym rdf:type ekom-owl:gene_symbol .
+ 
+
+    ?gene ekom:functionally_related_to ?interaction ;
+          ekom:associated_with $genesym ;
+          ekom:has_origin ekom-owl:Homo_sapiens ;
+          ekom:have_common_pathway $partner.
+
+    ?partner  ekom:associated_with $partnersym ;
+          
+}
+
+
+
+
